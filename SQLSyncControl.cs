@@ -282,8 +282,8 @@ namespace AutoLinkCore
             btnStartMonitoring.Text = "Stop Monitoring";
             btnStartMonitoring.BackColor = AppTheme.ErrorRed;
             
-            string logBitAddr = BuildBitAddress(cmbLogMemArea.Text, txtLogDBNum.Text, txtLogOffset.Text, txtLogBitNum.Text);
-            string confirmBitAddr = BuildBitAddress(cmbConfirmMemArea.Text, txtConfirmDBNum.Text, txtConfirmOffset.Text, txtConfirmBitNum.Text);
+            string logBitAddr = BuildBitAddress(lblLogMemArea.Text, txtLogDBNum.Text, txtLogOffset.Text, txtLogBitNum.Text);
+            string confirmBitAddr = BuildBitAddress(lblConfirmMemArea.Text, txtConfirmDBNum.Text, txtConfirmOffset.Text, txtConfirmBitNum.Text);
             
             LogMessage("=== Monitoring Started ===", false);
             LogMessage("Log Bit: " + logBitAddr, false);
@@ -315,20 +315,23 @@ namespace AutoLinkCore
                     // Build Log Bit address from controls
                     var logBitAddress = new PLCAddress
                     {
-                        DB = (cmbLogMemArea.Text == "DB") ? int.Parse(txtLogDBNum.Text) : 0,
+                        DB = (lblLogMemArea.Text == "DB") ? int.Parse(txtLogDBNum.Text) : 0,
                         Byte = int.Parse(txtLogOffset.Text),
                         Bit = int.Parse(txtLogBitNum.Text)
                     };
                     
                     var confirmBitAddress = new PLCAddress
                     {
-                        DB = (cmbConfirmMemArea.Text == "DB") ? int.Parse(txtConfirmDBNum.Text) : 0,
+                        DB = (lblConfirmMemArea.Text == "DB") ? int.Parse(txtConfirmDBNum.Text) : 0,
                         Byte = int.Parse(txtConfirmOffset.Text),
                         Bit = int.Parse(txtConfirmBitNum.Text)
                     };
                     
                     // Read Log Bit
                     bool currentLogBit = ReadBit(logBitAddress);
+                    
+                    // Update status indicators
+                    UpdateBitStatusIndicators(currentLogBit, logBitAddress, confirmBitAddress);
                     
                     // Handshake Protocol: Rising edge detection
                     if (currentLogBit && !lastLogBitState)
@@ -451,6 +454,44 @@ namespace AutoLinkCore
         {
             byte[] data = (byte[])plc.Read(DataType.DataBlock, address.DB, address.Byte, VarType.Byte, 1);
             return (data[0] & (1 << address.Bit)) != 0;
+        }
+        
+        private void UpdateBitStatusIndicators(bool logBitValue, PLCAddress logAddress, PLCAddress confirmAddress)
+        {
+            try
+            {
+                // Update Log Bit status indicator
+                if (this.InvokeRequired)
+                {
+                    this.Invoke(new Action(delegate
+                    {
+                        lblLogBitStatus.BackColor = logBitValue ? Color.Green : Color.Red;
+                    }));
+                }
+                else
+                {
+                    lblLogBitStatus.BackColor = logBitValue ? Color.Green : Color.Red;
+                }
+                
+                // Read and update Confirm Bit status indicator
+                bool confirmBitValue = ReadBit(confirmAddress);
+                if (this.InvokeRequired)
+                {
+                    this.Invoke(new Action(delegate
+                    {
+                        lblConfirmBitStatus.BackColor = confirmBitValue ? Color.Green : Color.Red;
+                    }));
+                }
+                else
+                {
+                    lblConfirmBitStatus.BackColor = confirmBitValue ? Color.Green : Color.Red;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Silently fail to avoid flooding logs during monitoring
+                System.Diagnostics.Debug.WriteLine("Status indicator update failed: " + ex.Message);
+            }
         }
         
         private void WriteBit(PLCAddress address, bool value)
@@ -817,6 +858,24 @@ namespace AutoLinkCore
             flowMappings.Controls.Remove(card);
             card.Dispose();
             LogMessage("Removed data mapping row", false);
+        }
+        
+        private void PaintRoundIndicator(object sender, PaintEventArgs e)
+        {
+            Label indicator = sender as Label;
+            if (indicator != null)
+            {
+                e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+                using (System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath())
+                {
+                    path.AddEllipse(0, 0, indicator.Width - 1, indicator.Height - 1);
+                    indicator.Region = new Region(path);
+                    using (SolidBrush brush = new SolidBrush(indicator.BackColor))
+                    {
+                        e.Graphics.FillEllipse(brush, 0, 0, indicator.Width - 1, indicator.Height - 1);
+                    }
+                }
+            }
         }        
         private class PLCAddress
         {

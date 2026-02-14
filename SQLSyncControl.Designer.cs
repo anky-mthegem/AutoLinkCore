@@ -32,19 +32,21 @@ namespace AutoLinkCore
         private Label lblLogDBLabel;
         private Label lblLogOffsetLabel;
         private Label lblLogBitLabel;
-        private ComboBox cmbLogMemArea;
+        private Label lblLogMemArea;
         private TextBox txtLogDBNum;
         private TextBox txtLogOffset;
         private TextBox txtLogBitNum;
+        private Label lblLogBitStatus;
         private Label lblConfirmBit;
         private Label lblConfirmMemAreaLabel;
         private Label lblConfirmDBLabel;
         private Label lblConfirmOffsetLabel;
         private Label lblConfirmBitLabel;
-        private ComboBox cmbConfirmMemArea;
+        private Label lblConfirmMemArea;
         private TextBox txtConfirmDBNum;
         private TextBox txtConfirmOffset;
         private TextBox txtConfirmBitNum;
+        private Label lblConfirmBitStatus;
         private Label lblHandshakeInfo;
         
         // Dynamic Data Mapping
@@ -94,19 +96,21 @@ namespace AutoLinkCore
             this.lblLogDBLabel = new Label();
             this.lblLogOffsetLabel = new Label();
             this.lblLogBitLabel = new Label();
-            this.cmbLogMemArea = new ComboBox();
+            this.lblLogMemArea = new Label();
             this.txtLogDBNum = new TextBox();
             this.txtLogOffset = new TextBox();
             this.txtLogBitNum = new TextBox();
+            this.lblLogBitStatus = new Label();
             this.lblConfirmBit = new Label();
             this.lblConfirmMemAreaLabel = new Label();
             this.lblConfirmDBLabel = new Label();
             this.lblConfirmOffsetLabel = new Label();
             this.lblConfirmBitLabel = new Label();
-            this.cmbConfirmMemArea = new ComboBox();
+            this.lblConfirmMemArea = new Label();
             this.txtConfirmDBNum = new TextBox();
             this.txtConfirmOffset = new TextBox();
             this.txtConfirmBitNum = new TextBox();
+            this.lblConfirmBitStatus = new Label();
             this.lblHandshakeInfo = new Label();
             
             this.grpDataMapping = new GroupBox();
@@ -253,16 +257,21 @@ namespace AutoLinkCore
             this.grpGlobalHandshake.Controls.Add(this.lblLogDBLabel);
             this.grpGlobalHandshake.Controls.Add(this.lblLogOffsetLabel);
             this.grpGlobalHandshake.Controls.Add(this.lblLogBitLabel);
-            this.grpGlobalHandshake.Controls.Add(this.cmbLogMemArea);
+            this.grpGlobalHandshake.Controls.Add(this.lblLogMemArea);
             this.grpGlobalHandshake.Controls.Add(this.txtLogDBNum);
             this.grpGlobalHandshake.Controls.Add(this.txtLogOffset);
             this.grpGlobalHandshake.Controls.Add(this.txtLogBitNum);
+            this.grpGlobalHandshake.Controls.Add(this.lblLogBitStatus);
             this.grpGlobalHandshake.Controls.Add(this.lblConfirmBit);
             this.grpGlobalHandshake.Controls.Add(this.lblConfirmMemAreaLabel);
             this.grpGlobalHandshake.Controls.Add(this.lblConfirmDBLabel);
             this.grpGlobalHandshake.Controls.Add(this.lblConfirmOffsetLabel);
             this.grpGlobalHandshake.Controls.Add(this.lblConfirmBitLabel);
-            this.grpGlobalHandshake.Controls.Add(this.cmbConfirmMemArea);
+            this.grpGlobalHandshake.Controls.Add(this.lblConfirmMemArea);
+            this.grpGlobalHandshake.Controls.Add(this.txtConfirmDBNum);
+            this.grpGlobalHandshake.Controls.Add(this.txtConfirmOffset);
+            this.grpGlobalHandshake.Controls.Add(this.txtConfirmBitNum);
+            this.grpGlobalHandshake.Controls.Add(this.lblConfirmBitStatus);
             this.grpGlobalHandshake.Controls.Add(this.txtConfirmDBNum);
             this.grpGlobalHandshake.Controls.Add(this.txtConfirmOffset);
             this.grpGlobalHandshake.Controls.Add(this.txtConfirmBitNum);
@@ -287,12 +296,13 @@ namespace AutoLinkCore
             this.lblLogMemAreaLabel.Text = "Area";
             this.lblLogMemAreaLabel.ForeColor = Color.Gray;
             
-            this.cmbLogMemArea.Font = new Font("Segoe UI", 8F);
-            this.cmbLogMemArea.Location = new Point(15, 48);
-            this.cmbLogMemArea.Size = new Size(50, 22);
-            this.cmbLogMemArea.DropDownStyle = ComboBoxStyle.DropDownList;
-            this.cmbLogMemArea.Items.AddRange(new object[] { "DB", "M", "I", "Q" });
-            this.cmbLogMemArea.SelectedIndex = 0;
+            this.lblLogMemArea.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            this.lblLogMemArea.Location = new Point(15, 48);
+            this.lblLogMemArea.Size = new Size(50, 22);
+            this.lblLogMemArea.Text = "DB";
+            this.lblLogMemArea.TextAlign = ContentAlignment.MiddleCenter;
+            this.lblLogMemArea.BackColor = Color.FromArgb(230, 230, 230);
+            this.lblLogMemArea.BorderStyle = BorderStyle.FixedSingle;
             
             this.lblLogDBLabel.Font = new Font("Segoe UI", 7F);
             this.lblLogDBLabel.Location = new Point(70, 33);
@@ -327,6 +337,13 @@ namespace AutoLinkCore
             this.txtLogBitNum.Size = new Size(35, 22);
             this.txtLogBitNum.Text = "0";
             
+            this.lblLogBitStatus.Location = new Point(215, 48);
+            this.lblLogBitStatus.Size = new Size(24, 24);
+            this.lblLogBitStatus.BackColor = Color.Red;
+            this.lblLogBitStatus.Text = "";
+            this.lblLogBitStatus.BorderStyle = BorderStyle.FixedSingle;
+            this.lblLogBitStatus.Paint += new PaintEventHandler(this.PaintRoundIndicator);
+            
             // Confirmation Bit
             this.lblConfirmBit.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             this.lblConfirmBit.Location = new Point(15, 78);
@@ -339,12 +356,13 @@ namespace AutoLinkCore
             this.lblConfirmMemAreaLabel.Text = "Area";
             this.lblConfirmMemAreaLabel.ForeColor = Color.Gray;
             
-            this.cmbConfirmMemArea.Font = new Font("Segoe UI", 8F);
-            this.cmbConfirmMemArea.Location = new Point(15, 101);
-            this.cmbConfirmMemArea.Size = new Size(50, 22);
-            this.cmbConfirmMemArea.DropDownStyle = ComboBoxStyle.DropDownList;
-            this.cmbConfirmMemArea.Items.AddRange(new object[] { "DB", "M", "I", "Q" });
-            this.cmbConfirmMemArea.SelectedIndex = 0;
+            this.lblConfirmMemArea.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            this.lblConfirmMemArea.Location = new Point(15, 101);
+            this.lblConfirmMemArea.Size = new Size(50, 22);
+            this.lblConfirmMemArea.Text = "DB";
+            this.lblConfirmMemArea.TextAlign = ContentAlignment.MiddleCenter;
+            this.lblConfirmMemArea.BackColor = Color.FromArgb(230, 230, 230);
+            this.lblConfirmMemArea.BorderStyle = BorderStyle.FixedSingle;
             
             this.lblConfirmDBLabel.Font = new Font("Segoe UI", 7F);
             this.lblConfirmDBLabel.Location = new Point(70, 86);
@@ -378,6 +396,13 @@ namespace AutoLinkCore
             this.txtConfirmBitNum.Location = new Point(170, 101);
             this.txtConfirmBitNum.Size = new Size(35, 22);
             this.txtConfirmBitNum.Text = "1";
+            
+            this.lblConfirmBitStatus.Location = new Point(215, 101);
+            this.lblConfirmBitStatus.Size = new Size(24, 24);
+            this.lblConfirmBitStatus.BackColor = Color.Red;
+            this.lblConfirmBitStatus.Text = "";
+            this.lblConfirmBitStatus.BorderStyle = BorderStyle.FixedSingle;
+            this.lblConfirmBitStatus.Paint += new PaintEventHandler(this.PaintRoundIndicator);
             
             this.lblHandshakeInfo.Font = new Font("Segoe UI", 7.5F, FontStyle.Italic);
             this.lblHandshakeInfo.ForeColor = Color.DarkBlue;
@@ -451,8 +476,8 @@ namespace AutoLinkCore
             this.btnStartMonitoring.BackColor = AppTheme.SuccessGreen;
             this.btnStartMonitoring.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             this.btnStartMonitoring.ForeColor = Color.White;
-            this.btnStartMonitoring.Location = new Point(180, 25);
-            this.btnStartMonitoring.Size = new Size(120, 35);
+            this.btnStartMonitoring.Location = new Point(175, 25);
+            this.btnStartMonitoring.Size = new Size(125, 45);
             this.btnStartMonitoring.Text = "Start Monitoring";
             this.btnStartMonitoring.UseVisualStyleBackColor = false;
             this.btnStartMonitoring.Click += new System.EventHandler(this.btnStartMonitoring_Click);
@@ -461,7 +486,7 @@ namespace AutoLinkCore
             this.btnClearLogs.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             this.btnClearLogs.ForeColor = Color.White;
             this.btnClearLogs.Location = new Point(305, 25);
-            this.btnClearLogs.Size = new Size(65, 35);
+            this.btnClearLogs.Size = new Size(65, 45);
             this.btnClearLogs.Text = "Clear";
             this.btnClearLogs.UseVisualStyleBackColor = false;
             this.btnClearLogs.Click += new System.EventHandler(this.btnClearLogs_Click);
