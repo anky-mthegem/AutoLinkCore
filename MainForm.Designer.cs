@@ -13,6 +13,7 @@ namespace AutoLinkCore
         private System.Windows.Forms.ToolStripMenuItem dashboardMenuItem;
         private System.Windows.Forms.ToolStripMenuItem connectionSettingsMenuItem;
         private System.Windows.Forms.ToolStripMenuItem diagnosticsMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sqlSyncMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fullscreenModeMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toggleSidebarMenuItem;
         private System.Windows.Forms.ToolStripMenuItem settingsMenu;
@@ -49,6 +50,7 @@ namespace AutoLinkCore
             this.dashboardMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.connectionSettingsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.diagnosticsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sqlSyncMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fullscreenModeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toggleSidebarMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsMenu = new System.Windows.Forms.ToolStripMenuItem();
@@ -122,6 +124,7 @@ namespace AutoLinkCore
             this.dashboardMenuItem,
             this.connectionSettingsMenuItem,
             this.diagnosticsMenuItem,
+            this.sqlSyncMenuItem,
             this.fullscreenModeMenuItem,
             this.toggleSidebarMenuItem});
             this.viewMenu.Name = "viewMenu";
@@ -148,6 +151,13 @@ namespace AutoLinkCore
             this.diagnosticsMenuItem.Size = new System.Drawing.Size(180, 22);
             this.diagnosticsMenuItem.Text = "Diagnostics";
             this.diagnosticsMenuItem.Click += new System.EventHandler(this.diagnosticsMenuItem_Click);
+            // 
+            // sqlSyncMenuItem
+            // 
+            this.sqlSyncMenuItem.Name = "sqlSyncMenuItem";
+            this.sqlSyncMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sqlSyncMenuItem.Text = "SQL Synchronization";
+            this.sqlSyncMenuItem.Click += new System.EventHandler(this.sqlSyncMenuItem_Click);
             // 
             // fullscreenModeMenuItem
             // 

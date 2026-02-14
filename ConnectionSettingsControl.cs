@@ -12,6 +12,12 @@ namespace AutoLinkCore
     {
         private Plc plc;
         
+        // Public property to expose PLC connection
+        public Plc PLCConnection
+        {
+            get { return plc; }
+        }
+        
         public ConnectionSettingsControl()
         {
             InitializeComponent();
