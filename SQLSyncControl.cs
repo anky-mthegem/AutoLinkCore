@@ -270,7 +270,8 @@ namespace AutoLinkCore
                 return;
             }
             
-            if (string.IsNullOrWhiteSpace(txtLogBit.Text) || string.IsNullOrWhiteSpace(txtConfirmBit.Text))
+            // Validate handshake bit configuration
+            if (string.IsNullOrWhiteSpace(txtLogOffset.Text) || string.IsNullOrWhiteSpace(txtConfirmOffset.Text))
             {
                 LogMessage("ERROR: Please configure handshake bits", true);
                 return;
@@ -281,9 +282,12 @@ namespace AutoLinkCore
             btnStartMonitoring.Text = "Stop Monitoring";
             btnStartMonitoring.BackColor = AppTheme.ErrorRed;
             
+            string logBitAddr = BuildBitAddress(cmbLogMemArea.Text, txtLogDBNum.Text, txtLogOffset.Text, txtLogBitNum.Text);
+            string confirmBitAddr = BuildBitAddress(cmbConfirmMemArea.Text, txtConfirmDBNum.Text, txtConfirmOffset.Text, txtConfirmBitNum.Text);
+            
             LogMessage("=== Monitoring Started ===", false);
-            LogMessage("Log Bit: " + txtLogBit.Text, false);
-            LogMessage("Confirm Bit: " + txtConfirmBit.Text, false);
+            LogMessage("Log Bit: " + logBitAddr, false);
+            LogMessage("Confirm Bit: " + confirmBitAddr, false);
             
             Task.Run(() => MonitoringLoop(cancellationTokenSource.Token));
         }
@@ -308,15 +312,20 @@ namespace AutoLinkCore
             {
                 try
                 {
-                    // Parse Log Bit address (e.g., "DB1.DBX10.0")
-                    var logBitAddress = ParseAddress(txtLogBit.Text);
-                    
-                    if (logBitAddress == null)
+                    // Build Log Bit address from controls
+                    var logBitAddress = new PLCAddress
                     {
-                        LogMessage("ERROR: Invalid Log Bit address format", true);
-                        await Task.Delay(1000, token);
-                        continue;
-                    }
+                        DB = (cmbLogMemArea.Text == "DB") ? int.Parse(txtLogDBNum.Text) : 0,
+                        Byte = int.Parse(txtLogOffset.Text),
+                        Bit = int.Parse(txtLogBitNum.Text)
+                    };
+                    
+                    var confirmBitAddress = new PLCAddress
+                    {
+                        DB = (cmbConfirmMemArea.Text == "DB") ? int.Parse(txtConfirmDBNum.Text) : 0,
+                        Byte = int.Parse(txtConfirmOffset.Text),
+                        Bit = int.Parse(txtConfirmBitNum.Text)
+                    };
                     
                     // Read Log Bit
                     bool currentLogBit = ReadBit(logBitAddress);
@@ -332,13 +341,9 @@ namespace AutoLinkCore
                         if (dataReadSuccess)
                         {
                             // Set Confirm Bit
-                            var confirmBitAddress = ParseAddress(txtConfirmBit.Text);
-                            if (confirmBitAddress != null)
-                            {
-                                WriteBit(confirmBitAddress, true);
-                                confirmBitState = true;
-                                LogMessage("<<< Confirm Bit SET (Write Success)", false);
-                            }
+                            WriteBit(confirmBitAddress, true);
+                            confirmBitState = true;
+                            LogMessage("<<< Confirm Bit SET (Write Success)", false);
                         }
                         else
                         {
@@ -351,13 +356,9 @@ namespace AutoLinkCore
                         LogMessage(">>> Log Bit RESET by PLC", false);
                         
                         // Reset Confirm Bit
-                        var confirmBitAddress = ParseAddress(txtConfirmBit.Text);
-                        if (confirmBitAddress != null)
-                        {
-                            WriteBit(confirmBitAddress, false);
-                            confirmBitState = false;
-                            LogMessage("<<< Confirm Bit RESET (Handshake Complete)", false);
-                        }
+                        WriteBit(confirmBitAddress, false);
+                        confirmBitState = false;
+                        LogMessage("<<< Confirm Bit RESET (Handshake Complete)", false);
                     }
                     
                     lastLogBitState = currentLogBit;
@@ -511,6 +512,18 @@ namespace AutoLinkCore
                     
                 default:
                     throw new Exception("Unsupported data type: " + mapping.DataType);
+            }
+        }
+        
+        private string BuildBitAddress(string memArea, string dbNum, string offset, string bit)
+        {
+            if (memArea == "DB")
+            {
+                return string.Format("DB{0}.DBX{1}.{2}", dbNum, offset, bit);
+            }
+            else
+            {
+                return string.Format("{0}{1}.{2}", memArea, offset, bit);
             }
         }
         

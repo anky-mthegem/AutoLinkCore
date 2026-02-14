@@ -28,9 +28,15 @@ namespace AutoLinkCore
         // Global Handshake Settings
         private GroupBox grpGlobalHandshake;
         private Label lblLogBit;
-        private TextBox txtLogBit;
+        private ComboBox cmbLogMemArea;
+        private TextBox txtLogDBNum;
+        private TextBox txtLogOffset;
+        private TextBox txtLogBitNum;
         private Label lblConfirmBit;
-        private TextBox txtConfirmBit;
+        private ComboBox cmbConfirmMemArea;
+        private TextBox txtConfirmDBNum;
+        private TextBox txtConfirmOffset;
+        private TextBox txtConfirmBitNum;
         private Label lblHandshakeInfo;
         
         // Dynamic Data Mapping
@@ -76,9 +82,15 @@ namespace AutoLinkCore
             
             this.grpGlobalHandshake = new GroupBox();
             this.lblLogBit = new Label();
-            this.txtLogBit = new TextBox();
+            this.cmbLogMemArea = new ComboBox();
+            this.txtLogDBNum = new TextBox();
+            this.txtLogOffset = new TextBox();
+            this.txtLogBitNum = new TextBox();
             this.lblConfirmBit = new Label();
-            this.txtConfirmBit = new TextBox();
+            this.cmbConfirmMemArea = new ComboBox();
+            this.txtConfirmDBNum = new TextBox();
+            this.txtConfirmOffset = new TextBox();
+            this.txtConfirmBitNum = new TextBox();
             this.lblHandshakeInfo = new Label();
             
             this.grpDataMapping = new GroupBox();
@@ -221,43 +233,85 @@ namespace AutoLinkCore
             // 
             this.grpGlobalHandshake.BackColor = Color.FromArgb(245, 245, 245);
             this.grpGlobalHandshake.Controls.Add(this.lblLogBit);
-            this.grpGlobalHandshake.Controls.Add(this.txtLogBit);
+            this.grpGlobalHandshake.Controls.Add(this.cmbLogMemArea);
+            this.grpGlobalHandshake.Controls.Add(this.txtLogDBNum);
+            this.grpGlobalHandshake.Controls.Add(this.txtLogOffset);
+            this.grpGlobalHandshake.Controls.Add(this.txtLogBitNum);
             this.grpGlobalHandshake.Controls.Add(this.lblConfirmBit);
-            this.grpGlobalHandshake.Controls.Add(this.txtConfirmBit);
+            this.grpGlobalHandshake.Controls.Add(this.cmbConfirmMemArea);
+            this.grpGlobalHandshake.Controls.Add(this.txtConfirmDBNum);
+            this.grpGlobalHandshake.Controls.Add(this.txtConfirmOffset);
+            this.grpGlobalHandshake.Controls.Add(this.txtConfirmBitNum);
             this.grpGlobalHandshake.Controls.Add(this.lblHandshakeInfo);
             this.grpGlobalHandshake.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
             this.grpGlobalHandshake.Location = new Point(400, 50);
             this.grpGlobalHandshake.Name = "grpGlobalHandshake";
-            this.grpGlobalHandshake.Size = new Size(380, 150);
+            this.grpGlobalHandshake.Size = new Size(380, 180);
             this.grpGlobalHandshake.TabIndex = 1;
             this.grpGlobalHandshake.TabStop = false;
             this.grpGlobalHandshake.Text = "Global Handshake Settings";
             
-            this.lblLogBit.Font = new Font("Segoe UI", 9F);
-            this.lblLogBit.Location = new Point(15, 30);
+            // Log Trigger Bit
+            this.lblLogBit.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            this.lblLogBit.Location = new Point(15, 25);
             this.lblLogBit.Size = new Size(100, 20);
             this.lblLogBit.Text = "Log Trigger Bit:";
             
-            this.txtLogBit.Font = new Font("Segoe UI", 9F);
-            this.txtLogBit.Location = new Point(120, 28);
-            this.txtLogBit.Size = new Size(240, 25);
-            this.txtLogBit.Text = "DB1.DBX10.0";
+            this.cmbLogMemArea.Font = new Font("Segoe UI", 8F);
+            this.cmbLogMemArea.Location = new Point(15, 48);
+            this.cmbLogMemArea.Size = new Size(50, 22);
+            this.cmbLogMemArea.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.cmbLogMemArea.Items.AddRange(new object[] { "DB", "M", "I", "Q" });
+            this.cmbLogMemArea.SelectedIndex = 0;
             
-            this.lblConfirmBit.Font = new Font("Segoe UI", 9F);
-            this.lblConfirmBit.Location = new Point(15, 65);
-            this.lblConfirmBit.Size = new Size(100, 20);
+            this.txtLogDBNum.Font = new Font("Segoe UI", 8F);
+            this.txtLogDBNum.Location = new Point(70, 48);
+            this.txtLogDBNum.Size = new Size(40, 22);
+            this.txtLogDBNum.Text = "1";
+            
+            this.txtLogOffset.Font = new Font("Segoe UI", 8F);
+            this.txtLogOffset.Location = new Point(115, 48);
+            this.txtLogOffset.Size = new Size(50, 22);
+            this.txtLogOffset.Text = "10";
+            
+            this.txtLogBitNum.Font = new Font("Segoe UI", 8F);
+            this.txtLogBitNum.Location = new Point(170, 48);
+            this.txtLogBitNum.Size = new Size(35, 22);
+            this.txtLogBitNum.Text = "0";
+            
+            // Confirmation Bit
+            this.lblConfirmBit.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            this.lblConfirmBit.Location = new Point(15, 78);
+            this.lblConfirmBit.Size = new Size(110, 20);
             this.lblConfirmBit.Text = "Confirmation Bit:";
             
-            this.txtConfirmBit.Font = new Font("Segoe UI", 9F);
-            this.txtConfirmBit.Location = new Point(120, 63);
-            this.txtConfirmBit.Size = new Size(240, 25);
-            this.txtConfirmBit.Text = "DB1.DBX10.1";
+            this.cmbConfirmMemArea.Font = new Font("Segoe UI", 8F);
+            this.cmbConfirmMemArea.Location = new Point(15, 101);
+            this.cmbConfirmMemArea.Size = new Size(50, 22);
+            this.cmbConfirmMemArea.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.cmbConfirmMemArea.Items.AddRange(new object[] { "DB", "M", "I", "Q" });
+            this.cmbConfirmMemArea.SelectedIndex = 0;
             
-            this.lblHandshakeInfo.Font = new Font("Segoe UI", 8F, FontStyle.Italic);
+            this.txtConfirmDBNum.Font = new Font("Segoe UI", 8F);
+            this.txtConfirmDBNum.Location = new Point(70, 101);
+            this.txtConfirmDBNum.Size = new Size(40, 22);
+            this.txtConfirmDBNum.Text = "1";
+            
+            this.txtConfirmOffset.Font = new Font("Segoe UI", 8F);
+            this.txtConfirmOffset.Location = new Point(115, 101);
+            this.txtConfirmOffset.Size = new Size(50, 22);
+            this.txtConfirmOffset.Text = "10";
+            
+            this.txtConfirmBitNum.Font = new Font("Segoe UI", 8F);
+            this.txtConfirmBitNum.Location = new Point(170, 101);
+            this.txtConfirmBitNum.Size = new Size(35, 22);
+            this.txtConfirmBitNum.Text = "1";
+            
+            this.lblHandshakeInfo.Font = new Font("Segoe UI", 7.5F, FontStyle.Italic);
             this.lblHandshakeInfo.ForeColor = Color.DarkBlue;
-            this.lblHandshakeInfo.Location = new Point(15, 95);
-            this.lblHandshakeInfo.Size = new Size(350, 50);
-            this.lblHandshakeInfo.Text = "Handshake Protocol:\n1. PLC sets Log Bit → 2. App reads all mappings → 3. App writes SQL\n→ 4. App sets Confirm Bit → 5. PLC resets Log Bit → 6. App resets Confirm Bit";
+            this.lblHandshakeInfo.Location = new Point(15, 130);
+            this.lblHandshakeInfo.Size = new Size(350, 45);
+            this.lblHandshakeInfo.Text = "Protocol: PLC sets Log Bit → App reads all mappings → App writes SQL\n→ App sets Confirm Bit → PLC resets Log Bit → App resets Confirm Bit";
             
             // ========== DYNAMIC DATA MAPPING ==========
             // 
@@ -303,7 +357,7 @@ namespace AutoLinkCore
             this.grpMonitoring.Controls.Add(this.btnClearLogs);
             this.grpMonitoring.Controls.Add(this.txtLogs);
             this.grpMonitoring.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
-            this.grpMonitoring.Location = new Point(400, 210);
+            this.grpMonitoring.Location = new Point(400, 240);
             this.grpMonitoring.Name = "grpMonitoring";
             this.grpMonitoring.Size = new Size(380, 100);
             this.grpMonitoring.TabIndex = 3;
