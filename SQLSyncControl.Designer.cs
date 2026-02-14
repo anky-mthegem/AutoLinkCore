@@ -28,11 +28,19 @@ namespace AutoLinkCore
         // Global Handshake Settings
         private GroupBox grpGlobalHandshake;
         private Label lblLogBit;
+        private Label lblLogMemAreaLabel;
+        private Label lblLogDBLabel;
+        private Label lblLogOffsetLabel;
+        private Label lblLogBitLabel;
         private ComboBox cmbLogMemArea;
         private TextBox txtLogDBNum;
         private TextBox txtLogOffset;
         private TextBox txtLogBitNum;
         private Label lblConfirmBit;
+        private Label lblConfirmMemAreaLabel;
+        private Label lblConfirmDBLabel;
+        private Label lblConfirmOffsetLabel;
+        private Label lblConfirmBitLabel;
         private ComboBox cmbConfirmMemArea;
         private TextBox txtConfirmDBNum;
         private TextBox txtConfirmOffset;
@@ -82,11 +90,19 @@ namespace AutoLinkCore
             
             this.grpGlobalHandshake = new GroupBox();
             this.lblLogBit = new Label();
+            this.lblLogMemAreaLabel = new Label();
+            this.lblLogDBLabel = new Label();
+            this.lblLogOffsetLabel = new Label();
+            this.lblLogBitLabel = new Label();
             this.cmbLogMemArea = new ComboBox();
             this.txtLogDBNum = new TextBox();
             this.txtLogOffset = new TextBox();
             this.txtLogBitNum = new TextBox();
             this.lblConfirmBit = new Label();
+            this.lblConfirmMemAreaLabel = new Label();
+            this.lblConfirmDBLabel = new Label();
+            this.lblConfirmOffsetLabel = new Label();
+            this.lblConfirmBitLabel = new Label();
             this.cmbConfirmMemArea = new ComboBox();
             this.txtConfirmDBNum = new TextBox();
             this.txtConfirmOffset = new TextBox();
@@ -233,11 +249,19 @@ namespace AutoLinkCore
             // 
             this.grpGlobalHandshake.BackColor = Color.FromArgb(245, 245, 245);
             this.grpGlobalHandshake.Controls.Add(this.lblLogBit);
+            this.grpGlobalHandshake.Controls.Add(this.lblLogMemAreaLabel);
+            this.grpGlobalHandshake.Controls.Add(this.lblLogDBLabel);
+            this.grpGlobalHandshake.Controls.Add(this.lblLogOffsetLabel);
+            this.grpGlobalHandshake.Controls.Add(this.lblLogBitLabel);
             this.grpGlobalHandshake.Controls.Add(this.cmbLogMemArea);
             this.grpGlobalHandshake.Controls.Add(this.txtLogDBNum);
             this.grpGlobalHandshake.Controls.Add(this.txtLogOffset);
             this.grpGlobalHandshake.Controls.Add(this.txtLogBitNum);
             this.grpGlobalHandshake.Controls.Add(this.lblConfirmBit);
+            this.grpGlobalHandshake.Controls.Add(this.lblConfirmMemAreaLabel);
+            this.grpGlobalHandshake.Controls.Add(this.lblConfirmDBLabel);
+            this.grpGlobalHandshake.Controls.Add(this.lblConfirmOffsetLabel);
+            this.grpGlobalHandshake.Controls.Add(this.lblConfirmBitLabel);
             this.grpGlobalHandshake.Controls.Add(this.cmbConfirmMemArea);
             this.grpGlobalHandshake.Controls.Add(this.txtConfirmDBNum);
             this.grpGlobalHandshake.Controls.Add(this.txtConfirmOffset);
@@ -257,6 +281,12 @@ namespace AutoLinkCore
             this.lblLogBit.Size = new Size(100, 20);
             this.lblLogBit.Text = "Log Trigger Bit:";
             
+            this.lblLogMemAreaLabel.Font = new Font("Segoe UI", 7F);
+            this.lblLogMemAreaLabel.Location = new Point(15, 33);
+            this.lblLogMemAreaLabel.Size = new Size(50, 12);
+            this.lblLogMemAreaLabel.Text = "Area";
+            this.lblLogMemAreaLabel.ForeColor = Color.Gray;
+            
             this.cmbLogMemArea.Font = new Font("Segoe UI", 8F);
             this.cmbLogMemArea.Location = new Point(15, 48);
             this.cmbLogMemArea.Size = new Size(50, 22);
@@ -264,15 +294,33 @@ namespace AutoLinkCore
             this.cmbLogMemArea.Items.AddRange(new object[] { "DB", "M", "I", "Q" });
             this.cmbLogMemArea.SelectedIndex = 0;
             
+            this.lblLogDBLabel.Font = new Font("Segoe UI", 7F);
+            this.lblLogDBLabel.Location = new Point(70, 33);
+            this.lblLogDBLabel.Size = new Size(40, 12);
+            this.lblLogDBLabel.Text = "DB";
+            this.lblLogDBLabel.ForeColor = Color.Gray;
+            
             this.txtLogDBNum.Font = new Font("Segoe UI", 8F);
             this.txtLogDBNum.Location = new Point(70, 48);
             this.txtLogDBNum.Size = new Size(40, 22);
             this.txtLogDBNum.Text = "1";
             
+            this.lblLogOffsetLabel.Font = new Font("Segoe UI", 7F);
+            this.lblLogOffsetLabel.Location = new Point(115, 33);
+            this.lblLogOffsetLabel.Size = new Size(50, 12);
+            this.lblLogOffsetLabel.Text = "DBX";
+            this.lblLogOffsetLabel.ForeColor = Color.Gray;
+            
             this.txtLogOffset.Font = new Font("Segoe UI", 8F);
             this.txtLogOffset.Location = new Point(115, 48);
             this.txtLogOffset.Size = new Size(50, 22);
             this.txtLogOffset.Text = "10";
+            
+            this.lblLogBitLabel.Font = new Font("Segoe UI", 7F);
+            this.lblLogBitLabel.Location = new Point(170, 33);
+            this.lblLogBitLabel.Size = new Size(35, 12);
+            this.lblLogBitLabel.Text = "Bit";
+            this.lblLogBitLabel.ForeColor = Color.Gray;
             
             this.txtLogBitNum.Font = new Font("Segoe UI", 8F);
             this.txtLogBitNum.Location = new Point(170, 48);
@@ -285,6 +333,12 @@ namespace AutoLinkCore
             this.lblConfirmBit.Size = new Size(110, 20);
             this.lblConfirmBit.Text = "Confirmation Bit:";
             
+            this.lblConfirmMemAreaLabel.Font = new Font("Segoe UI", 7F);
+            this.lblConfirmMemAreaLabel.Location = new Point(15, 86);
+            this.lblConfirmMemAreaLabel.Size = new Size(50, 12);
+            this.lblConfirmMemAreaLabel.Text = "Area";
+            this.lblConfirmMemAreaLabel.ForeColor = Color.Gray;
+            
             this.cmbConfirmMemArea.Font = new Font("Segoe UI", 8F);
             this.cmbConfirmMemArea.Location = new Point(15, 101);
             this.cmbConfirmMemArea.Size = new Size(50, 22);
@@ -292,15 +346,33 @@ namespace AutoLinkCore
             this.cmbConfirmMemArea.Items.AddRange(new object[] { "DB", "M", "I", "Q" });
             this.cmbConfirmMemArea.SelectedIndex = 0;
             
+            this.lblConfirmDBLabel.Font = new Font("Segoe UI", 7F);
+            this.lblConfirmDBLabel.Location = new Point(70, 86);
+            this.lblConfirmDBLabel.Size = new Size(40, 12);
+            this.lblConfirmDBLabel.Text = "DB";
+            this.lblConfirmDBLabel.ForeColor = Color.Gray;
+            
             this.txtConfirmDBNum.Font = new Font("Segoe UI", 8F);
             this.txtConfirmDBNum.Location = new Point(70, 101);
             this.txtConfirmDBNum.Size = new Size(40, 22);
             this.txtConfirmDBNum.Text = "1";
             
+            this.lblConfirmOffsetLabel.Font = new Font("Segoe UI", 7F);
+            this.lblConfirmOffsetLabel.Location = new Point(115, 86);
+            this.lblConfirmOffsetLabel.Size = new Size(50, 12);
+            this.lblConfirmOffsetLabel.Text = "DBX";
+            this.lblConfirmOffsetLabel.ForeColor = Color.Gray;
+            
             this.txtConfirmOffset.Font = new Font("Segoe UI", 8F);
             this.txtConfirmOffset.Location = new Point(115, 101);
             this.txtConfirmOffset.Size = new Size(50, 22);
             this.txtConfirmOffset.Text = "10";
+            
+            this.lblConfirmBitLabel.Font = new Font("Segoe UI", 7F);
+            this.lblConfirmBitLabel.Location = new Point(170, 86);
+            this.lblConfirmBitLabel.Size = new Size(35, 12);
+            this.lblConfirmBitLabel.Text = "Bit";
+            this.lblConfirmBitLabel.ForeColor = Color.Gray;
             
             this.txtConfirmBitNum.Font = new Font("Segoe UI", 8F);
             this.txtConfirmBitNum.Location = new Point(170, 101);
