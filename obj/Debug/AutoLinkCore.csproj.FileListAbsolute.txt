@@ -19,4 +19,4 @@ C:\Users\anky_\Downloads\Gcode with siemens PLC\VSCODE\PLC COM\AutoLinkCore\bin\
 C:\Users\anky_\Downloads\Gcode with siemens PLC\VSCODE\PLC COM\AutoLinkCore\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\anky_\Downloads\Gcode with siemens PLC\VSCODE\PLC COM\AutoLinkCore\obj\Debug\AutoLinkCore.PLCDiagnosticsControl.resources
 C:\Users\anky_\Downloads\Gcode with siemens PLC\VSCODE\PLC COM\AutoLinkCore\bin\Debug\logo.png
-C:\Users\anky_\Downloads\Gcode with siemens PLC\VSCODE\PLC COM\AutoLinkCore\obj\Debug\AutoLinkCore.SQLSyncControl.resources
+C:\Users\anky_\Downloads\Gcode with siemens PLC\VSCODE\PLC COM\AutoLinkCore\obj\Debug\AutoLinkCore.PLCDataMapping.resources
