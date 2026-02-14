@@ -32,7 +32,18 @@ namespace AutoLinkCore
             // 
             // pictureLogo
             // 
-            this.pictureLogo.Image = System.Drawing.Image.FromFile(@"..\..\..\logo.png");
+            try
+            {
+                if (System.IO.File.Exists(@"..\..\..\logo.png"))
+                {
+                    this.pictureLogo.Image = System.Drawing.Image.FromFile(@"..\..\..\logo.png");
+                }
+                else if (System.IO.File.Exists("logo.png"))
+                {
+                    this.pictureLogo.Image = System.Drawing.Image.FromFile("logo.png");
+                }
+            }
+            catch { }
             this.pictureLogo.Location = new System.Drawing.Point(140, 20);
             this.pictureLogo.Name = "pictureLogo";
             this.pictureLogo.Size = new System.Drawing.Size(100, 100);
