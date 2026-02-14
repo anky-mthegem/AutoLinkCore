@@ -1,0 +1,17 @@
+AutoLink Core - S7-1200 PLC Image
+
+To display the S7-1200 PLC image in the Connection Settings screen:
+
+1. Save an image of the Siemens S7-1200 PLC as: s7-1200.png
+2. Place it in the same directory as logo.png (project root)
+3. The image will be automatically loaded and displayed below the connection settings
+
+Recommended image specifications:
+- Format: PNG, JPG, or BMP
+- Size: Approximately 440x180 pixels (will auto-scale)
+- Aspect ratio: ~2.4:1 (horizontal orientation)
+
+Current path expected: 
+..\..\..\..\s7-1200.png (relative to bin\Debug)
+
+If the image is not found, the PictureBox will simply remain empty without causing errors.
