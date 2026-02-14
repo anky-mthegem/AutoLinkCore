@@ -192,15 +192,15 @@ namespace AutoLinkCore
             this.rbCreateNew.CheckedChanged += new System.EventHandler(this.rbCreateNew_CheckedChanged);
             
             this.txtNewDBName.Font = new Font("Segoe UI", 9F);
-            this.txtNewDBName.Location = new Point(100, 215);
-            this.txtNewDBName.Size = new Size(260, 25);
+            this.txtNewDBName.Location = new Point(170, 190);
+            this.txtNewDBName.Size = new Size(190, 25);
             this.txtNewDBName.Text = "PLCDataLog";
             this.txtNewDBName.Enabled = false;
             
             this.btnTestSQL.BackColor = AppTheme.AccentBlue;
             this.btnTestSQL.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             this.btnTestSQL.ForeColor = Color.White;
-            this.btnTestSQL.Location = new Point(15, 220);
+            this.btnTestSQL.Location = new Point(15, 225);
             this.btnTestSQL.Size = new Size(175, 35);
             this.btnTestSQL.Text = "Test Connection";
             this.btnTestSQL.UseVisualStyleBackColor = false;
@@ -209,7 +209,7 @@ namespace AutoLinkCore
             this.btnInitializeDB.BackColor = AppTheme.SuccessGreen;
             this.btnInitializeDB.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             this.btnInitializeDB.ForeColor = Color.White;
-            this.btnInitializeDB.Location = new Point(195, 220);
+            this.btnInitializeDB.Location = new Point(195, 225);
             this.btnInitializeDB.Size = new Size(175, 35);
             this.btnInitializeDB.Text = "Initialize Database";
             this.btnInitializeDB.UseVisualStyleBackColor = false;
