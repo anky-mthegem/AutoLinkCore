@@ -194,7 +194,7 @@ namespace AutoLinkCore
             this.txtNewDBName.Font = new Font("Segoe UI", 9F);
             this.txtNewDBName.Location = new Point(100, 215);
             this.txtNewDBName.Size = new Size(260, 25);
-            this.txtNewDBName.Text = "PLCDataLogs";
+            this.txtNewDBName.Text = "PLCDataLog";
             this.txtNewDBName.Enabled = false;
             
             this.btnTestSQL.BackColor = AppTheme.AccentBlue;

@@ -124,7 +124,6 @@ namespace AutoLinkCore
             this.dashboardMenuItem,
             this.connectionSettingsMenuItem,
             this.diagnosticsMenuItem,
-            this.sqlSyncMenuItem,
             this.fullscreenModeMenuItem,
             this.toggleSidebarMenuItem});
             this.viewMenu.Name = "viewMenu";
@@ -195,6 +194,8 @@ namespace AutoLinkCore
             // 
             // databaseConfigMenuItem
             // 
+            this.databaseConfigMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.sqlSyncMenuItem});
             this.databaseConfigMenuItem.Name = "databaseConfigMenuItem";
             this.databaseConfigMenuItem.Size = new System.Drawing.Size(215, 22);
             this.databaseConfigMenuItem.Text = "Database (MS SQL) Config";
