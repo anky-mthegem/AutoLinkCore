@@ -9,6 +9,7 @@ namespace AutoLinkCore
         private ConnectionSettingsControl connectionSettingsControl;
         private PLCDiagnosticsControl diagnosticsControl;
         private SQLSyncControl sqlSyncControl;
+        private AnalogClockControl analogClockControl;
         
         public MainForm()
         {
@@ -26,6 +27,15 @@ namespace AutoLinkCore
             };
             this.Controls.Add(contentPanel);
             contentPanel.BringToFront();
+            
+            analogClockControl = new AnalogClockControl
+            {
+                Location = new System.Drawing.Point((contentPanel.Width - 500) / 2, (contentPanel.Height - 500) / 2),
+                Size = new System.Drawing.Size(500, 500),
+                Anchor = AnchorStyles.None,
+                Visible = true
+            };
+            contentPanel.Controls.Add(analogClockControl);
             
             connectionSettingsControl = new ConnectionSettingsControl
             {
@@ -53,6 +63,7 @@ namespace AutoLinkCore
         {
             diagnosticsControl.Visible = false;
             sqlSyncControl.Visible = false;
+            analogClockControl.Visible = false;
             connectionSettingsControl.Visible = true;
             connectionSettingsControl.BringToFront();
         }
@@ -72,6 +83,8 @@ namespace AutoLinkCore
             connectionSettingsControl.Visible = false;
             diagnosticsControl.Visible = false;
             sqlSyncControl.Visible = false;
+            analogClockControl.Visible = true;
+            analogClockControl.BringToFront();
         }
         
         private void connectDisconnectPLCMenuItem_Click(object sender, EventArgs e)
@@ -93,6 +106,7 @@ namespace AutoLinkCore
         {
             connectionSettingsControl.Visible = false;
             sqlSyncControl.Visible = false;
+            analogClockControl.Visible = false;
             diagnosticsControl.Visible = true;
             diagnosticsControl.BringToFront();
         }
@@ -101,6 +115,7 @@ namespace AutoLinkCore
         {
             connectionSettingsControl.Visible = false;
             diagnosticsControl.Visible = false;
+            analogClockControl.Visible = false;
             sqlSyncControl.Visible = true;
             sqlSyncControl.BringToFront();
             

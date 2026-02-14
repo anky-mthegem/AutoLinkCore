@@ -57,6 +57,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppTheme.cs" />
+    <Compile Include="AnalogClockControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AnalogClockControl.Designer.cs">
+      <DependentUpon>AnalogClockControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="ConnectionSettingsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
