@@ -255,6 +255,7 @@ namespace AutoLinkCore
             this.licenseInfoMenuItem.Name = "licenseInfoMenuItem";
             this.licenseInfoMenuItem.Size = new System.Drawing.Size(180, 22);
             this.licenseInfoMenuItem.Text = "License Info";
+            this.licenseInfoMenuItem.Click += new System.EventHandler(this.licenseInfoMenuItem_Click);
             // 
             // MainForm
             // 

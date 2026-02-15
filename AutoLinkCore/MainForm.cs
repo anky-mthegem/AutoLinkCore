@@ -125,5 +125,15 @@ namespace AutoLinkCore
                 sqlSyncControl.SetPLC(connectionSettingsControl.PLCConnection);
             }
         }
+
+        private void licenseInfoMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(
+                "Open Sourced and free to use by Anyone 😊\n\n" +
+                "Powered by Anky Singh and Team",
+                "License Information",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+        }
     }
 }

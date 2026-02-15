@@ -1,7 +1,5 @@
 C:\Users\anky_\Downloads\Gcode with siemens PLC\VSCODE\PLC COM\AutoLinkCore\bin\Debug\AutoLinkCore.exe
-C:\Users\anky_\Downloads\Gcode with siemens PLC\VSCODE\PLC COM\AutoLinkCore\bin\Debug\System.Memory.dll
 C:\Users\anky_\Downloads\Gcode with siemens PLC\VSCODE\PLC COM\AutoLinkCore\bin\Debug\logo.png
-C:\Users\anky_\Downloads\Gcode with siemens PLC\VSCODE\PLC COM\AutoLinkCore\bin\Debug\System.Numerics.Vectors.dll
 C:\Users\anky_\Downloads\Gcode with siemens PLC\VSCODE\PLC COM\AutoLinkCore\obj\Debug\AutoLinkCore.csproj.AssemblyReference.cache
 C:\Users\anky_\Downloads\Gcode with siemens PLC\VSCODE\PLC COM\AutoLinkCore\obj\Debug\AutoLinkCore.ConnectionSettingsControl.resources
 C:\Users\anky_\Downloads\Gcode with siemens PLC\VSCODE\PLC COM\AutoLinkCore\obj\Debug\AutoLinkCore.PLCDiagnosticsControl.resources
